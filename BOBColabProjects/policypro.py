@@ -21,7 +21,7 @@ def run_policypro():
     torch.manual_seed(1337)
 
     # Load data
-    with open('input.txt', 'r', encoding='utf-8') as f:
+    with open('/content/BOBColabProjects/BOBColabProjects/input.txt', 'r', encoding='utf-8') as f:
         text = f.read()
 
     # Define the model architecture (same as in the training code)
@@ -136,7 +136,7 @@ def run_policypro():
     decode = lambda l: ''.join([itos[i] for i in l])  # Decoder: take a list of integers, output a string
 
     # Load the trained model
-    model_path = 'bigram_language_model.pth'  # Update with the actual path if different
+    model_path = '/content/BOBColabProjects/BOBColabProjects/bigram_language_model.pth'  # Update with the actual path if different
     model = BigramLanguageModel(vocab_size, n_embd)
     model.load_state_dict(torch.load(model_path))
     model.eval()  # Set the model to evaluation mode

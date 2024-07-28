@@ -19,7 +19,7 @@ signature_verification_key = '0c0ef834d1f446069736654d6370a2d8'
 signature_verification_endpoint = 'https://visiondetnpred-prediction.cognitiveservices.azure.com/customvision/v3.0/Prediction/d0ea49cb-c85a-4219-a20e-0b7f57643a9b/classify/iterations/sig_ver/image'
 
 # CSV file path
-csv_file_path = "/content/CTS/SignaturesCSV/SignatureColab.csv"
+csv_file_path = "/content/BOBColabProjects/BOBColabProjects/CTS/SignaturesCSV/SignatureColab.csv"
 
 # Initialize variables to hold content values
 content1 = None
@@ -138,7 +138,7 @@ def cheque_truncation_sys():
     uploaded_file = st.file_uploader("Upload a cheque image", type=["jpg", "jpeg", "png"])
 
     if uploaded_file is not None:
-        image_path = os.path.join("/content/CTS", uploaded_file.name)
+        image_path = os.path.join("/content/BOBColabProjects/BOBColabProjects/CTS", uploaded_file.name)
         with open(image_path, "wb") as f:
             f.write(uploaded_file.getbuffer())
 
@@ -162,7 +162,7 @@ def cheque_truncation_sys():
                     w = int(bounding_box['width'] * width)
                     h = int(bounding_box['height'] * height)
 
-                    extracted_signature_path = "/content/CTS/extracted_signature.jpg"
+                    extracted_signature_path = "/content/BOBColabProjects/BOBColabProjects/CTS/extracted_signature.jpg"
                     extract_signature(image_path, (x, y, w, h), extracted_signature_path)
 
                     result_dict = analyze_document(image_path)
