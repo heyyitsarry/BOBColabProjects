@@ -1,9 +1,10 @@
 import streamlit as st
-from policypro import run_policypro  # Import the run_policypro function
-from ChequeShield import cheque_truncation_sys  # Import the cheque_truncation_sys function
-from StockInsight import stock_stat_pro  # Import the stock_stat_pro function
-from WorkSpace import workspace_app  # Import the workspace_app function
-from scheduler import scheduler_feature  # Import the scheduler_feature function
+from policypro import run_policypro
+from StockInsight import stock_stat_pro
+from WorkSpace import workspace_app
+from currency_chest import currency_chest_management
+from scheduler import scheduler_feature
+from ChequeShield import signature_verification  # Import the new page
 
 def home():
     st.title("Welcome to BankSaarthi-AI")
@@ -15,9 +16,10 @@ def home():
     - **MyWorkSpace:** Document Management App.
     - **ChequeShield AI:** Automated cheque verification.
     - **StockInsight AI:** Automated Stock Statement Analysis.
+    - **Currency Chest Management:** Manage and track currency chests.
 
     ## How to Use
-    Use the dropdown menu below to navigate to the desired feature. Each feature has a dedicated interface for specific tasks.
+    Use the dropdown menu on the left to navigate to the desired feature. Each feature has a dedicated interface for specific tasks.
 
     ## About Us
     We BankSarthi AI, are committed to leveraging AI to streamline banking operations, ensuring security, and enhancing user experience.
@@ -30,21 +32,24 @@ def home():
 def main():
     st.title("BankSaarthi-AI")
     st.sidebar.title("BankSaarthi-AI Menu")
-    menu_options = ["Home", "SchedulerPro AI", "PolicyPro AI",  "Workspace", "ChequeShield AI", "StockInsight AI"]
+    menu_options = ["Home", "SchedulerPro AI", "PolicyPro AI", "Workspace", "ChequeShield AI", "StockInsight AI", "CurrencyVault"]
     choice = st.sidebar.selectbox("Go to", menu_options)
 
     if choice == "Home":
         home()
     elif choice == "SchedulerPro AI":
-        scheduler_feature()  # Call the function for SchedulerPro AI
+        scheduler_feature()
     elif choice == "PolicyPro AI":
         run_policypro()
     elif choice == "ChequeShield AI":
-        cheque_truncation_sys()  # Call the function for ChequeShield AI
+        signature_verification()
     elif choice == "StockInsight AI":
         stock_stat_pro()
     elif choice == "Workspace":
         workspace_app()
+    elif choice == "CurrencyVault":
+        currency_chest_management()
+    
 
 if __name__ == "__main__":
     main()
