@@ -30,7 +30,7 @@ def home():
 def main():
     st.title("BankSaarthi-AI")
     st.sidebar.title("BankSaarthi-AI Menu")
-    menu_options = ["Home", "PolicyPro AI", "Workspace", "ChequeShield AI", "StockInsight AI", "CurrencyVault"]
+    menu_options = ["Home", "ChequeShield AI", "StockInsight AI", "CurrencyVault", "Workspace", "PolicyPro AI" ]
     choice = st.sidebar.selectbox("Go to", menu_options)
 
     if choice == "Home":
