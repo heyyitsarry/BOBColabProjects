@@ -3,7 +3,6 @@ from policypro import run_policypro
 from StockInsight import stock_stat_pro
 from WorkSpace import workspace_app
 from currency_chest import currency_chest_management
-from scheduler import scheduler_feature
 from ChequeShield import signature_verification  # Import the new page
 
 def home():
@@ -11,12 +10,11 @@ def home():
     st.markdown("""
     ## Overview
     BankSaarthi-AI is designed to enhance operational efficiency in banking through the power of AI. Our application includes the following features:
-    - **SchedulerPro AI:** Smart scheduling and reminders.
-    - **PolicyPro AI:** Generate RBI guidelines text.
-    - **MyWorkSpace:** Document Management App.
     - **ChequeShield AI:** Automated cheque verification.
     - **StockInsight AI:** Automated Stock Statement Analysis.
     - **Currency Chest Management:** Manage and track currency chests.
+    - **MyWorkSpace:** Document Management App.
+    - **PolicyPro AI:** Generate RBI guidelines text.
 
     ## How to Use
     Use the dropdown menu on the left to navigate to the desired feature. Each feature has a dedicated interface for specific tasks.
@@ -32,13 +30,11 @@ def home():
 def main():
     st.title("BankSaarthi-AI")
     st.sidebar.title("BankSaarthi-AI Menu")
-    menu_options = ["Home", "SchedulerPro AI", "PolicyPro AI", "Workspace", "ChequeShield AI", "StockInsight AI", "CurrencyVault"]
+    menu_options = ["Home", "PolicyPro AI", "Workspace", "ChequeShield AI", "StockInsight AI", "CurrencyVault"]
     choice = st.sidebar.selectbox("Go to", menu_options)
 
     if choice == "Home":
         home()
-    elif choice == "SchedulerPro AI":
-        scheduler_feature()
     elif choice == "PolicyPro AI":
         run_policypro()
     elif choice == "ChequeShield AI":
