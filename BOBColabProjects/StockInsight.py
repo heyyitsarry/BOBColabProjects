@@ -179,13 +179,13 @@ def stock_stat_pro():
 
                         # Determine creditor status and display appropriate message
                         if stock_val > CC_Used:
-                            st.markdown(f"<h3 style='color:green;'>The creditor is good to go</h3>", unsafe_allow_html=True)
+                            st.markdown(f"<h3 style='color:green;'>The borrower is good to go</h3>", unsafe_allow_html=True)
                             status_message = "The borrower is good to go."
                         elif stock_val == CC_Used:
-                            st.markdown(f"<h3 style='color:orange;'>The creditor is on the edge</h3>", unsafe_allow_html=True)
+                            st.markdown(f"<h3 style='color:orange;'>The borrower is on the edge</h3>", unsafe_allow_html=True)
                             status_message = "The borrower is on the edge."
                         else:
-                            st.markdown(f"<h3 style='color:red;'>The creditor has failed the evaluation</h3>", unsafe_allow_html=True)
+                            st.markdown(f"<h3 style='color:red;'>The borrower has failed the evaluation</h3>", unsafe_allow_html=True)
                             status_message = "The borrower has failed the evaluation."
 
                         st.write(f"**Current Interest Payment:** The borrower needs to pay 11% interest on the borrowed amount, which amounts to: ${interest_amount:.2f}")
