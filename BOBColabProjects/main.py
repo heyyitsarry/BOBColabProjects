@@ -1,9 +1,11 @@
+# main.py or app.py
+
 import streamlit as st
 from policypro import run_policypro
 from StockInsight import stock_stat_pro
 from WorkSpace import workspace_app
+from ChequeShield import signature_verification
 from currency_chest import currency_chest_management
-from ChequeShield import signature_verification  # Import the new page
 
 def home():
     st.title("Welcome to BankSaarthi-AI")
@@ -30,7 +32,7 @@ def home():
 def main():
     st.title("BankSaarthi-AI")
     st.sidebar.title("BankSaarthi-AI Menu")
-    menu_options = ["Home", "ChequeShield AI", "StockInsight AI", "CurrencyVault", "Workspace", "PolicyPro AI" ]
+    menu_options = ["Home", "ChequeShield AI", "StockInsight AI", "CurrencyVault", "Workspace", "PolicyPro AI"]
     choice = st.sidebar.selectbox("Go to", menu_options)
 
     if choice == "Home":
@@ -38,14 +40,16 @@ def main():
     elif choice == "PolicyPro AI":
         run_policypro()
     elif choice == "ChequeShield AI":
-        signature_verification()
+        signature_verification()    
     elif choice == "StockInsight AI":
         stock_stat_pro()
     elif choice == "Workspace":
         workspace_app()
     elif choice == "CurrencyVault":
         currency_chest_management()
-    
 
 if __name__ == "__main__":
     main()
+
+elif choice == "ChequeShield AI":
+        signature_verification()

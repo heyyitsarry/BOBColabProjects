@@ -94,7 +94,7 @@ def extract_details(image_path, endpoint, api_key, model_id='ChequeSheild'):
     return Name, Amt_W, Amt_No, Acc_No, Bank_Name, IFSC, Branch_Add, Date
 
 # Signature Verification Page
-def signature_verification():
+def cheque_processing_app():
     st.title("Cheque Truncation System")
 
     # Initialize session state if not present
