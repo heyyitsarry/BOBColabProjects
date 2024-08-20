@@ -1,8 +1,9 @@
-# policypro.py
 import streamlit as st
 import torch
 import torch.nn as nn
 from torch.nn import functional as F
+import os
+from openai import AzureOpenAI
 
 def run_policypro():
     # Hyperparameters
@@ -136,7 +137,7 @@ def run_policypro():
     decode = lambda l: ''.join([itos[i] for i in l])  # Decoder: take a list of integers, output a string
 
     # Load the trained model
-    model_path = '/content/BOBColabProjects/BOBColabProjects/bigram_language_model.pth'  # Update with the actual path if different
+    model_path = '/content/BOBColabProjects/BOBColabProjects/bigram_language_model.pth'
     model = BigramLanguageModel(vocab_size, n_embd)
     model.load_state_dict(torch.load(model_path))
     model.eval()  # Set the model to evaluation mode
@@ -170,8 +171,32 @@ def run_policypro():
                     shifted_char = char
                 decoded_output += shifted_char
 
-            # Display decoded output
-            st.subheader("Generated Text:")
-            st.write(decoded_output)
+            # Grammar and typo correction using Azure OpenAI
+            corrected_output = grammar_correction(decoded_output)
+
+            # Display corrected output
+            st.subheader("Generated Text (Corrected):")
+            st.write(corrected_output)
         else:
             st.warning("Please enter a prompt.")
+
+def grammar_correction(text):
+    client = AzureOpenAI(
+        api_key="ca0b414ad7b24ef596ad93088093a0c8",
+        api_version="2024-02-01",
+        azure_endpoint="https://banksaarthiopenai.openai.azure.com/"
+    )
+    deployment_name = "OpenAiSheduler"
+
+    response = client.completions.create(
+        model=deployment_name,
+        prompt=f"Please correct the following text for any grammatical and typographical errors:\n\n{text}\n\nCorrected Text:",
+        temperature=0.7,
+        max_tokens=200,
+        top_p=0.9,
+        frequency_penalty=0,
+        presence_penalty=0
+    )
+
+    corrected_text = response.choices[0].text.strip()
+    return corrected_text
