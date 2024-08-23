@@ -200,3 +200,4 @@ def signature_verification():
                         st.success("Verified")
                     else:
                         st.error
+                        st.success("Rejected")
