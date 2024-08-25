@@ -129,7 +129,7 @@ def upsert_data_to_db(data):
 def fetch_data(Acc_No):
     conn = connect_to_sql_server()
     query = """
-    SELECT Date, NetSales, StockVal, CashCred
+    SELECT Date, NetSales, StockVal, CashCred, KYC
     FROM StoStatDataBase
     WHERE Acc_No = ?
     """
@@ -188,9 +188,8 @@ def stock_stat_pro():
                             st.markdown(f"<h3 style='color:red;'>The borrower has failed the evaluation</h3>", unsafe_allow_html=True)
                             status_message = "The borrower has failed the evaluation."
 
-                        st.write(f"**Current Interest Payment:** The borrower needs to pay 11% interest on the borrowed amount, which amounts to: ${interest_amount:.2f}")
+                        st.write(f"**Current Interest Payment:** The borrower needs to pay 11% interest on the borrowed amount, which amounts to: Rs. {interest_amount:.2f}")
 
-                        st.write(status_message)
 
                         # Insert or update data in the database
                         upsert_data_to_db(extracted_data)
@@ -200,6 +199,10 @@ def stock_stat_pro():
                         df = fetch_data(extracted_data['Acc_No'])
                         if df is not None and not df.empty:
                             st.write("Plotting data...")
+
+                            # Display KYC value
+                            kyc_value = df['KYC'].iloc[0] if 'KYC' in df.columns else 'N/A'
+                            st.write(f"**KYC Status:** {kyc_value}")
 
                             # Create columns for side-by-side plots
                             col1, col2 = st.columns(2)
