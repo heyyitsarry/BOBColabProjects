@@ -1,7 +1,7 @@
-Acc_No,signature
-123456789101223,/content/BOBColabProjects/BOBColabProjects/CTS/SignaturesCSV/testchk.jpg
-908765432109876,/content/BOBColabProjects/BOBColabProjects/CTS/SignaturesCSV/07.jpg
-325696871453364,/content/BOBColabProjects/BOBColabProjects/CTS/SignaturesCSV/09.jpg
-456712347890456,/content/BOBColabProjects/BOBColabProjects/CTS/SignaturesCSV/13.jpg
-777700003333231,/content/BOBColabProjects/BOBColabProjects/CTS/SignaturesCSV/16.jpg
-911010049001545,/content/BOBColabProjects/BOBColabProjects/CTS/SignaturesCSV/testchk.jpg
+Acc_No,signature,KYC
+123456789101223,/content/BOBColabProjects/BOBColabProjects/CTS/SignaturesCSV/testchk.jpg,Updated
+908765432109876,/content/BOBColabProjects/BOBColabProjects/CTS/SignaturesCSV/07.jpg,Updated
+325696871453364,/content/BOBColabProjects/BOBColabProjects/CTS/SignaturesCSV/09.jpg,Updated
+456712347890456,/content/BOBColabProjects/BOBColabProjects/CTS/SignaturesCSV/13.jpg,Updated
+777700003333231,/content/BOBColabProjects/BOBColabProjects/CTS/SignaturesCSV/16.jpg,Updated
+911010049001545,/content/BOBColabProjects/BOBColabProjects/CTS/SignaturesCSV/testchk.jpg,Not_Updated

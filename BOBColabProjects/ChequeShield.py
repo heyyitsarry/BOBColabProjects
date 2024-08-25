@@ -147,6 +147,23 @@ def signature_verification():
 
             # Generate button
             if st.button("Generate"):
+                # Check KYC status before proceeding
+                csv_file_path = "/content/BOBColabProjects/BOBColabProjects/CTS/SignaturesCSV/SignatureGitColab.csv"
+                kyc_status = None
+                with open(csv_file_path, mode='r') as file:
+                    reader = csv.DictReader(file)
+                    for row in reader:
+                        if row["Acc_No"] == Acc_No:
+                            kyc_status = row["KYC"]
+                            break
+                
+                if kyc_status == "Not_Updated":
+                    st.error("KYC is not Updated. Cannot proceed with verification.")
+                    return
+                elif kyc_status != "Updated":
+                    st.error("KYC status is unknown or missing. Cannot proceed.")
+                    return
+
                 # Paths and keys for signature detection and verification
                 detection_prediction_key = '0c0ef834d1f446069736654d6370a2d8'
                 detection_endpoint = 'https://visiondetnpred-prediction.cognitiveservices.azure.com/customvision/v3.0/Prediction/b8415553-0527-4962-a118-b8615cd44c19/detect/iterations/Iteration1/image'
@@ -171,7 +188,6 @@ def signature_verification():
                     return
 
                 # Search for the account number in the CSV file and get DB_Signature path
-                csv_file_path = "/content/BOBColabProjects/BOBColabProjects/CTS/SignaturesCSV/SignatureGitColab.csv"
                 DB_Signature = None
                 with open(csv_file_path, mode='r') as file:
                     reader = csv.DictReader(file)
@@ -190,14 +206,11 @@ def signature_verification():
                         return
 
                     # Check probabilities and assign "none" if below 60%
-                    if extracted_prob < 0.6:
-                        extracted_label = "none"
-                    if db_prob < 0.6:
-                        db_label = "none"
+                    extracted_label = extracted_label if extracted_prob >= 0.60 else "none"
+                    db_label = db_label if db_prob >= 0.60 else "none"
 
-                    # Compare the labels
+                    # Compare signature labels and account numbers
                     if extracted_label == db_label:
-                        st.success("Verified")
+                        st.success(f"Verified:  Signatures match")
                     else:
-                        st.error
-                        st.success("Rejected")
+                        st.error(f"Rejected: Signatures do not match.")
