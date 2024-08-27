@@ -1,23 +1,23 @@
-# main.py or app.py
-
 import streamlit as st
 from policypro import run_policypro
 from StockInsight import stock_stat_pro
 from WorkSpace import workspace_app
 from ChequeShield import signature_verification
 from currency_chest import currency_chest_management
+from aadhaar_kyc import aadhaar_kyc_verification  # Import the Aadhaar KYC module
 
 def home():
     st.title("Welcome to BankSaarthi-AI")
     st.markdown("""
     ## Overview
     BankSaarthi-AI is designed to enhance operational efficiency in banking through the power of AI. Our application includes the following features:
-    - **ChequeShield AI:** Automated cheque verification.
     - **StockInsight AI:** Automated Stock Statement Analysis.
-    - **Currency Chest Management:** Manage and track currency chests.
-    - **MyWorkSpace:** Document Management App.
+    - **ChequeShield AI:** Automated cheque verification.
+    - **KYCxpert:** Aadhaar KYC Verification.
     - **PolicyPro AI:** Generate RBI guidelines text.
-
+    - **CurrencyVault:** Manage and track currency chests.
+    - **MyWorkSpace:** Document Management App.
+    
     ## How to Use
     Use the dropdown menu on the left to navigate to the desired feature. Each feature has a dedicated interface for specific tasks.
 
@@ -32,7 +32,7 @@ def home():
 def main():
     st.title("BankSaarthi-AI")
     st.sidebar.title("BankSaarthi-AI Menu")
-    menu_options = ["Home", "ChequeShield AI", "StockInsight AI", "CurrencyVault", "Workspace", "PolicyPro AI"]
+    menu_options = ["Home", "StockInsight AI", "ChequeShield AI", "KYCxpert", "PolicyPro AI", "CurrencyVault", "Workspace", ]
     choice = st.sidebar.selectbox("Go to", menu_options)
 
     if choice == "Home":
@@ -47,9 +47,8 @@ def main():
         workspace_app()
     elif choice == "CurrencyVault":
         currency_chest_management()
+    elif choice == "KYCxpert":
+        aadhaar_kyc_verification()  # Call the Aadhaar KYC function
 
 if __name__ == "__main__":
     main()
-
-elif choice == "ChequeShield AI":
-        signature_verification()
